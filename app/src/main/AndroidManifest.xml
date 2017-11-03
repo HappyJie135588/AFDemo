@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.example.huangjie.afdemo">
 
+    <!-- 文件读权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -28,6 +31,16 @@
         <activity
             android:name=".uis.activities.tab_a_customerview.TouchPullViewActivity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".uis.activities.tab_b_media_record.LocalVideoListActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".uis.activities.tab_b_media_record.MediaActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".uis.activities.tab_b_media_record.MediaRecorderActivity"
+            android:screenOrientation="portrait"/>
+
     </application>
 
 </manifest>

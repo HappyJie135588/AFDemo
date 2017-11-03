@@ -11,6 +11,7 @@
     </style>
     <style name="AppTheme" parent="BaseTheme">
         <item name="android:windowIsTranslucent">true</item>
+        <!--<item name="android:windowBackground">@drawable/first</item>-->
     </style>
 
 </resources>

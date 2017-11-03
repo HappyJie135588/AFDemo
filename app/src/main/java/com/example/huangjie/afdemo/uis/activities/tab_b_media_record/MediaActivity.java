@@ -1,46 +1,28 @@
-package com.example.huangjie.afdemo.uis.fragments.taba;
+package com.example.huangjie.afdemo.uis.activities.tab_b_media_record;
 
-
-import android.Manifest;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.v4.app.Fragment;
 import android.widget.VideoView;
 
 import com.example.huangjie.afdemo.R;
-import com.example.huangjie.afdemo.uis.activities.tab_b_media_record.LocalVideoListActivity;
-import com.example.huangjie.afdemo.uis.activities.tab_b_media_record.MediaRecorderActivity;
 
-import net.arvin.afbaselibrary.uis.fragments.BaseHeaderFragment;
-import net.arvin.afbaselibrary.uis.helpers.IBaseContact;
+import net.arvin.afbaselibrary.uis.activities.BaseHeaderActivity;
 import net.arvin.afbaselibrary.utils.AFLog;
-
-import java.security.Permission;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-import static android.app.Activity.RESULT_OK;
-import static com.example.huangjie.afdemo.uis.activities.tab_b_media_record.LocalVideoListActivity.LOCAL_VIDEO_RESULT;
+public class MediaActivity extends BaseHeaderActivity {
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class TabA_bFragment extends BaseHeaderFragment {
     static final int REQUEST_VIDEO_CAPTURE = 1;
     @BindView(R.id.videoview)
     public VideoView mVideoView;
 
     @Override
     public int getContentView() {
-        return R.layout.fragment_tab_a_b;
-    }
-
-    @Override
-    public boolean isShowBackView() {
-        return false;
+        return R.layout.activity_media;
     }
 
     @Override
@@ -50,13 +32,13 @@ public class TabA_bFragment extends BaseHeaderFragment {
 
     @Override
     public String getTitleText() {
-        return "TabA_b";
+        return "视频录制方式";
     }
 
     @OnClick(R.id.btn_sysrecord)
     public void btn_sysrecord() {
         Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-        if (takeVideoIntent.resolveActivity(getAFContext().getPackageManager()) != null) {
+        if (takeVideoIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takeVideoIntent, REQUEST_VIDEO_CAPTURE);
         }
     }
@@ -84,17 +66,8 @@ public class TabA_bFragment extends BaseHeaderFragment {
 
     @OnClick(R.id.btn_customervideolist)
     public void btn_customervideolist() {
-        requestPermission(new IBaseContact.IRequestPermissionCallback(){
-
-            @Override
-            public void agreeAll() {
-                AFLog.d("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
-                startActivityForResult(LocalVideoListActivity.class, LOCAL_VIDEO_RESULT);
-            }
-        },"缺少读文件权限", Manifest.permission.READ_EXTERNAL_STORAGE);
+        startActivity(LocalVideoListActivity.class);
     }
-
-
 
     @OnClick(R.id.btn_play)
     public void btn_play() {
@@ -111,22 +84,23 @@ public class TabA_bFragment extends BaseHeaderFragment {
             AFLog.d("地址:" + videoUri.toString());
             showToast(videoUri.toString());
             mVideoView.setVideoURI(videoUri);
-            mVideoView.start();//程序运行时自动开始播放视频
-            mVideoView.requestFocus();//播放窗口为当前窗口
+            //mVideoView.start();//程序运行时自动开始播放视频
+            //mVideoView.requestFocus();//播放窗口为当前窗口
         } else if (requestCode == MediaRecorderActivity.REQUEST_CUSTOMER_VIDEO_CAPTURE) {
             Uri videoUri = data.getData();
             AFLog.d("地址:" + videoUri.toString());
             showToast(videoUri.toString());
             mVideoView.setVideoURI(videoUri);
-            mVideoView.start();//程序运行时自动开始播放视频
-            mVideoView.requestFocus();//播放窗口为当前窗口
-        } else if (requestCode == LOCAL_VIDEO_RESULT) {
+            //mVideoView.start();//程序运行时自动开始播放视频
+            //mVideoView.requestFocus();//播放窗口为当前窗口
+        } else if (requestCode == LocalVideoListActivity.LOCAL_VIDEO_RESULT) {
             Uri videoUri = data.getData();
             AFLog.d("地址:" + videoUri.toString());
             showToast(videoUri.toString());
             mVideoView.setVideoURI(videoUri);
-            mVideoView.start();//程序运行时自动开始播放视频
-            mVideoView.requestFocus();//播放窗口为当前窗口
+            //mVideoView.start();//程序运行时自动开始播放视频
+            //mVideoView.requestFocus();//播放窗口为当前窗口
         }
     }
+
 }
