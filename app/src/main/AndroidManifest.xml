@@ -3,7 +3,13 @@
           package="com.example.huangjie.afdemo">
 
     <!-- 文件读权限 -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <!-- 请求访问使用照相设备 -->
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <!-- 限制有摄像头设备安装 -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true"/>
 
     <application
         android:allowBackup="true"

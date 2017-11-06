@@ -100,6 +100,11 @@ public abstract class BaseFragment extends Fragment implements IBaseContact.IBas
     }
 
     @Override
+    public Object getObject() {
+        return BaseFragment.this;
+    }
+
+    @Override
     public void onPermissionsGranted(int requestCode, List<String> perms) {
         mBaseHelper.onPermissionsGranted(requestCode, perms);
     }

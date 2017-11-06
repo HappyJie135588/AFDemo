@@ -89,7 +89,7 @@ public class BaseHelper extends NeedInitViewHelper<IBaseContact.IBaseView> imple
         if (AFPermissionUtil.hasPermissions(mActivity, permissions)) {
             onPermissionsAllGranted();
         } else {
-            AFPermissionUtil.requestPermissions(mActivity, reqStr, AFConstant.PERMISSION_REQUEST_CODE, permissions);
+            AFPermissionUtil.requestPermissions(getObject(), reqStr, AFConstant.PERMISSION_REQUEST_CODE, permissions);
         }
     }
 
@@ -103,8 +103,13 @@ public class BaseHelper extends NeedInitViewHelper<IBaseContact.IBaseView> imple
      * @param grantResults 结果
      */
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        AFPermissionUtil.onRequestPermissionsResult(requestCode, permissions, grantResults, mActivity);
+    public void onRequestPermissionsResult( int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        AFPermissionUtil.onRequestPermissionsResult(requestCode, permissions, grantResults, getObject());
+    }
+
+    @Override
+    public Object getObject() {
+        return mBaseView.getObject();
     }
 
     public boolean isPermissionRequestBackFromSetting(int requestCode) {
@@ -126,7 +131,7 @@ public class BaseHelper extends NeedInitViewHelper<IBaseContact.IBaseView> imple
 
     @Override
     public void onPermissionsDenied(int requestCode, List<String> perms) {
-        AFPermissionUtil.checkDeniedPermissionsNeverAskAgain(mActivity,
+        AFPermissionUtil.checkDeniedPermissionsNeverAskAgain(getObject(),
                 mActivity.getString(R.string.af_permission_tips), mActivity.getString(R.string.setting),
                 mActivity.getString(R.string.cancel), perms);
     }

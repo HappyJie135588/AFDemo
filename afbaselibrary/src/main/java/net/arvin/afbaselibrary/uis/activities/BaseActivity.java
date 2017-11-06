@@ -95,6 +95,11 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseCon
     }
 
     @Override
+    public Object getObject() {
+        return BaseActivity.this;
+    }
+
+    @Override
     public void onPermissionsGranted(int requestCode, List<String> perms) {
         mBaseHelper.onPermissionsGranted(requestCode, perms);
     }

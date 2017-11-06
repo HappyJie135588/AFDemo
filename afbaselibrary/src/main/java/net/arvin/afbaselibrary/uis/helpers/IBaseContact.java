@@ -44,6 +44,8 @@ public class IBaseContact {
         void startActivityForResult(Class clazz, Bundle bundle, int requestCode);
 
         void requestPermission(IBaseContact.IRequestPermissionCallback permissionCallback, String reqStr, String... permissions);
+
+        Object getObject();
     }
 
     public interface IBasePresenter extends IPresenter, AFPermissionUtil.PermissionCallbacks {
@@ -58,6 +60,8 @@ public class IBaseContact {
         void startActivityForResult(Class clazz, Bundle bundle, int requestCode);
 
         void requestPermission(IBaseContact.IRequestPermissionCallback permissionCallback, String reqStr, String... permissions);
+
+        Object getObject();
     }
 
     public interface IRequestPermissionCallback {
